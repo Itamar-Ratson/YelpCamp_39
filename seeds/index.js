@@ -5,9 +5,10 @@ const { places, descriptors } = require('./seedHelpers');
 const seedImg = require('./images');
 const Campground = require('../models/campground');
 const images = require('./images');
+const dbUrl = proccess.env.DB_URL;
 
 // enabling mongoose and express
-mongoose.connect('mongodb://localhost:27017/yelp-camp');
+mongoose.connect(dbUrl);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
