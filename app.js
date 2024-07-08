@@ -28,7 +28,7 @@ const userRoutes = require('./routes/users');
 // enabling mongoose and express
 mongoose.connect(dbUrl);
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'app connection error:'));
 db.once('open', () => {
 	console.log('Database connected');
 });
@@ -48,10 +48,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 //sanitize (protect) queries
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET;
 //store
 const store = new MongoStore({
 	url: dbUrl,
-	secret: 'secret',
+	secret,
 	touchAfter: 24 * 60 * 60,
 });
 store.on('error', function (e) {
@@ -61,7 +62,7 @@ store.on('error', function (e) {
 const sessionConfig = {
 	store,
 	name: 'session',
-	secret: 'secret',
+	secret,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {

@@ -1,3 +1,7 @@
+//env
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
+}
 // setting mongoose and others
 const mongoose = require('mongoose');
 const cities = require('./cities');
@@ -10,7 +14,7 @@ const dbUrl = process.env.DB_URL;
 // enabling mongoose and express
 mongoose.connect(dbUrl);
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'seeds connection error:'));
 db.once('open', () => {
 	console.log('Database connected from seeds');
 });
@@ -27,7 +31,7 @@ const seedDB = async () => {
 
 		// seed data into campground
 		const camp = new Campground({
-			author: '66803520567a695dd7b8207c',
+			author: '668ac437e92e69d874d78445',
 			geometry: {
 				type: 'Point',
 				coordinates: [cities[citySeed].longitude, cities[citySeed].latitude],
