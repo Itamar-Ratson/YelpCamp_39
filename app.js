@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //sanitize (protect) queries
 app.use(mongoSanitize());
 
-const secret = process.env.SECRET;
+const secret = process.env.SECRET || 'secret';
 //store
 const store = new MongoStore({
 	url: dbUrl,
