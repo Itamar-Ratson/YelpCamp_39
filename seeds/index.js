@@ -5,7 +5,7 @@ const { places, descriptors } = require('./seedHelpers');
 const seedImg = require('./images');
 const Campground = require('../models/campground');
 const images = require('./images');
-const dbUrl = proccess.env.DB_URL;
+const dbUrl = process.env.DB_URL;
 
 // enabling mongoose and express
 mongoose.connect(dbUrl);

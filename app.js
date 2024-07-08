@@ -17,8 +17,8 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
-const dbUrl = proccess.env.DB_URL;
 const MongoStore = require('connect-mongo')(session);
+const dbUrl = process.env.DB_URL;
 
 // requiring routes
 const campgroundRoutes = require('./routes/campgrounds');
